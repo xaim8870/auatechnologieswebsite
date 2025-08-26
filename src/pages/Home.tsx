@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form'; // For career form
-import Slider from 'react-slick'; // For carousels (install react-slick)
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ServiceCard from '../components/ServiceCard';
@@ -19,7 +18,7 @@ const slides = [slide1, slide2, slide3, slide4, slide5, slide6];
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const { register, handleSubmit, reset } = useForm(); // Simple form for careers
+  useForm(); // Simple form for careers
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,19 +27,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const onCareerSubmit = (data: any) => {
-    console.log('Career form submitted:', data); // Replace with API call
-    reset();
-  };
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [{ breakpoint: 768, settings: { slidesToShow: 1 } }],
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
