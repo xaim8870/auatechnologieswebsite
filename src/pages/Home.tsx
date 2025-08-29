@@ -67,8 +67,8 @@ const Home = () => {
       <section className="py-20 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-start justify-between space-y-6 md:space-y-0 md:space-x-8">
-            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-300 dark:to-indigo-300 font-mono leading-tight opacity-100 transition-all duration-1000 ease-in-out transform translate-x-[-50px] hover:translate-x-0 hover:opacity-100">
-              Welcome to AUA LLC: Your Global Software Partner
+            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-300 dark:to-indigo-300 font-mono leading-tight opacity-100 transition-all duration-1000 ease-in-out transform md:translate-x-[-50px] hover:translate-x-0 hover:opacity-100">
+              Welcome to AUA Technologies: Your Global Software Partner
             </h1>
             <p className="text-xl max-w-md leading-relaxed text-gray-700 dark:text-gray-300 opacity-100 transition-all duration-1000 ease-in-out transform translate-y-10 hover:translate-y-0 hover:opacity-100 delay-300">
               We deliver exceptional <span className="text-3xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-300 dark:to-indigo-300 font-mono font-bold"> software engineering, </span>AUA LLC combines local oversight with global expertise for flawless execution. We focus on customer-centric solutions in software development, mobile apps, medical health tech, AI, and more—helping businesses thrive with innovative, secure, and scalable technologies.

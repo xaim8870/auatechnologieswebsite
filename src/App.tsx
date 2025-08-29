@@ -5,6 +5,8 @@ import ThemeProvider  from './contexts/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/ContactUs';
 // Import other pages as you create them, e.g., import About from './pages/About';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
               {/* <Route path="/about" element={<About />} /> */}
               {/* Add more routes */}
             </Routes>
