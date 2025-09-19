@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaHospitalUser, FaBrain, FaLaptopCode, FaUsers, FaGlobeAsia } from "react-icons/fa";
+import UsamaPic from "../assets/images/Usama Jabar.jpg";
 
 const About = () => {
   return (
@@ -105,31 +106,53 @@ const About = () => {
       </section>
 
       {/* Founders Section */}
+            
+      {/* Founders Section */}
       <section className="py-20 bg-gradient-to-b from-blue-50 to-gray-100 dark:from-indigo-900 dark:to-gray-900 text-center">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
             Meet Our Founders
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[1, 2, 3].map((_, idx) => (
+            {[
+              {
+                name: "Usama Jabar",
+                role: "Co-Founder & Visionary",
+                img: UsamaPic,
+              },
+              {
+                name: "Syed Asshhad Abrar",
+                role: "Co-Founder & CTO",
+                img: "https://randomuser.me/api/portraits/men/45.jpg", // replace with your image
+              },
+              {
+                name: "Abdul Ahad Shan",
+                role: "Co-Founder & COO",
+                img: "https://randomuser.me/api/portraits/women/65.jpg", // replace with your image
+              },
+            ].map((founder, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.05 }}
                 className="flex flex-col items-center"
               >
                 <div className="w-40 h-40 rounded-full bg-gray-300 dark:bg-gray-700 shadow-lg mb-6 overflow-hidden">
-                  {/* Replace this div with <img src="founder.jpg" /> later */}
-                  <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
-                    Image {idx + 1}
-                  </div>
+                  <img
+                    src={founder.img}
+                    alt={founder.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">Founder {idx + 1}</h3>
-                <p className="text-gray-600 dark:text-gray-400">Co-Founder & Visionary</p>
+                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                  {founder.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">{founder.role}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Why Choose Us */}
       <section className="bg-gradient-to-r from-indigo-600 to-blue-700 py-20 text-white text-center">

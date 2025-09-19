@@ -1,7 +1,7 @@
 // src/pages/Contact.tsx
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Twitter, Linkedin } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -84,6 +84,11 @@ const Contact = () => {
               Send Message
             </button>
           </form>
+
+          {/* CTA under form */}
+          <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400 italic">
+            Looking for AI, Healthcare, or Full-Stack solutions? Let’s collaborate.
+          </p>
         </motion.div>
 
         {/* Contact Info */}
@@ -118,17 +123,32 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* Social Links */}
           <div className="flex gap-6 mt-6">
-            <a href="#" className="text-indigo-500 hover:text-indigo-700">
-              <Facebook />
-            </a>
-            <a href="#" className="text-indigo-500 hover:text-indigo-700">
+            <a
+              href="https://twitter.com/YourHandle"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-500 hover:text-indigo-700 transition-colors"
+            >
               <Twitter />
             </a>
-            <a href="#" className="text-indigo-500 hover:text-indigo-700">
+            <a
+              href="https://linkedin.com/company/YourCompany"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-500 hover:text-indigo-700 transition-colors"
+            >
               <Linkedin />
             </a>
           </div>
+
+          {/* Response Note */}
+         <p className="mt-4 inline-block px-4 py-2 text-sm font-bold text-amber-800 dark:text-amber-200 bg-amber-100 dark:bg-amber-900 rounded-full italic animate-pulse shadow-md">
+            ⚡ We typically respond within 3–6 hours.
+        </p>
+
+
         </motion.div>
       </section>
     </div>

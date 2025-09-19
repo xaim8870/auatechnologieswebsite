@@ -3,74 +3,12 @@ import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 import logo from "../assets/images/nav-logo.png";
-import { HiChevronDown, HiSearch, HiMenu, HiX } from "react-icons/hi";
-import { FaCode, FaRobot, FaCogs, FaBrain, FaLaptopCode } from "react-icons/fa";
+import { HiSearch, HiMenu, HiX } from "react-icons/hi";
 
-// ---------------------- Dropdowns ----------------------
-const ServicesDropdown = ({ isOpen }: { isOpen: boolean }) => (
-  <div
-    className={`absolute left-0 mt-2 w-full md:w-[600px] bg-white dark:bg-gradient-to-br dark:from-blue-800 dark:to-indigo-800 shadow-2xl rounded-xl overflow-hidden transition-all duration-500 ease-in-out transform ${
-      isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
-    } z-50 p-4`}
-  >
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {[
-        { icon: FaCode, title: "Web Development", desc: "Crafting responsive apps with React, Vue, Angular, and robust backends." },
-        { icon: FaRobot, title: "AI", desc: "Automate and innovate with custom AI models for your industry." },
-        { icon: FaCogs, title: "DevOps", desc: "CI/CD pipelines, cloud management, and automated testing for scalability." },
-        { icon: FaBrain, title: "Model Training", desc: "Fine-tune ML models with TensorFlow and PyTorch for peak performance." },
-        { icon: FaLaptopCode, title: "Software Development", desc: "End-to-end solutions with secure, scalable architectures." },
-      ].map((item, idx) => (
-        <div
-          key={idx}
-          className="flex items-start space-x-3 bg-blue-700/70 dark:bg-blue-900/90 p-3 rounded-md hover:bg-blue-500 dark:hover:bg-blue-700 transition-colors duration-200"
-        >
-          <item.icon className="text-white text-3xl flex-shrink-0 animate-pulse" />
-          <div>
-            <h4 className="font-bold text-white text-lg">{item.title}</h4>
-            <p className="text-sm text-gray-100">{item.desc}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const TechnologiesDropdown = ({ isOpen }: { isOpen: boolean }) => (
-  <div
-    className={`absolute left-0 mt-2 w-full md:w-[600px] bg-white dark:bg-gradient-to-br dark:from-purple-800 dark:to-blue-800 shadow-2xl rounded-xl overflow-hidden transition-all duration-500 ease-in-out transform ${
-      isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
-    } z-50 p-4`}
-  >
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {[
-        { icon: FaCode, title: "Frontend Stacks", desc: "React, Vue.js, Angular, Tailwind CSS, TypeScript" },
-        { icon: FaLaptopCode, title: "Backend Stacks", desc: "Node.js, Django, Flask, Express, Spring Boot" },
-        { icon: FaBrain, title: "AI/ML Tools", desc: "TensorFlow, PyTorch, Scikit-learn, Hugging Face, OpenAI APIs" },
-        { icon: FaCogs, title: "DevOps & Cloud", desc: "AWS, Azure, GCP, Docker, Kubernetes, Jenkins" },
-      ].map((item, idx) => (
-        <div
-          key={idx}
-          className="flex items-center space-x-3 bg-purple-700/70 dark:bg-purple-900/90 p-3 rounded-md hover:bg-purple-500 dark:hover:bg-purple-700 transition-colors duration-200"
-        >
-          <item.icon className="text-white text-3xl animate-spin-slow" />
-          <div>
-            <h4 className="font-bold text-white text-lg">{item.title}</h4>
-            <p className="text-sm text-gray-100">{item.desc}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-// ---------------------- Navbar ----------------------
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isDark = theme === "dark";
 
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [technologiesOpen, setTechnologiesOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -78,9 +16,12 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setNavbarVisible(currentScrollY <= lastScrollY);
-      setLastScrollY(currentScrollY);
+      // ✅ Only apply hide-on-scroll for screens >= 768px (desktop/laptop)
+      if (window.innerWidth >= 768) {
+        const currentScrollY = window.scrollY;
+        setNavbarVisible(currentScrollY <= lastScrollY);
+        setLastScrollY(currentScrollY);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -92,7 +33,7 @@ const Navbar = () => {
         navbarVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <img src={logo} alt="AUA Logo" className="h-14 w-auto" />
@@ -107,29 +48,13 @@ const Navbar = () => {
             About
           </Link>
 
-          {/* Services */}
-          <div
-            className="relative group"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button className="uppercase text-sm font-medium flex items-center text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
-              Services <HiChevronDown className={`ml-1 h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-            </button>
-            <ServicesDropdown isOpen={servicesOpen} />
-          </div>
+          <Link to="/services" className="uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
+            Services
+          </Link>
 
-          {/* Technologies */}
-          <div
-            className="relative group"
-            onMouseEnter={() => setTechnologiesOpen(true)}
-            onMouseLeave={() => setTechnologiesOpen(false)}
-          >
-            <button className="uppercase text-sm font-medium flex items-center text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
-              Technologies <HiChevronDown className={`ml-1 h-4 w-4 transition-transform ${technologiesOpen ? "rotate-180" : ""}`} />
-            </button>
-            <TechnologiesDropdown isOpen={technologiesOpen} />
-          </div>
+          <Link to="/technologies" className="uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
+            Technologies
+          </Link>
 
           <Link to="/portfolio" className="uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
             Portfolio
@@ -169,16 +94,12 @@ const Navbar = () => {
           <Link to="/about" className="block uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
             About
           </Link>
-          <button onClick={() => setServicesOpen(!servicesOpen)} className="flex justify-between w-full text-sm font-medium uppercase text-black dark:text-white">
-            Services <HiChevronDown className={`h-4 w-4 ${servicesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {servicesOpen && <ServicesDropdown isOpen={servicesOpen} />}
-
-          <button onClick={() => setTechnologiesOpen(!technologiesOpen)} className="flex justify-between w-full text-sm font-medium uppercase text-black dark:text-white">
-            Technologies <HiChevronDown className={`h-4 w-4 ${technologiesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {technologiesOpen && <TechnologiesDropdown isOpen={technologiesOpen} />}
-
+          <Link to="/services" className="block uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
+            Services
+          </Link>
+          <Link to="/technologies" className="block uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
+            Technologies
+          </Link>
           <Link to="/portfolio" className="block uppercase text-sm font-medium text-black dark:text-white hover:text-blue-600 dark:hover:text-purple-400">
             Portfolio
           </Link>
