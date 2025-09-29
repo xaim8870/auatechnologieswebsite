@@ -48,7 +48,7 @@ const Navbar = () => {
             <Link
               key={idx}
               to={link.to}
-              className="relative uppercase text-md font-bold text-blue-900 dark:text-blue-200 hover:text-orange-600 dark:hover:text-purple-400 transition-colors duration-200 group"
+              className="relative uppercase text-md font-bold text-blue-900 hover:text-orange-600 transition-colors duration-200 group"
             >
               {link.name}
               
@@ -86,7 +86,7 @@ const Navbar = () => {
             <Link
               key={idx}
               to={link.to}
-              className="block uppercase text-sm font-medium text-blue-900 dark:text-blue-200 hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
+              className="block uppercase text-sm font-medium text-blue-900  hover:text-blue-600  transition-colors duration-200"
             >
               {link.name}
             </Link>
