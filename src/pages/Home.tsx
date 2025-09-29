@@ -27,7 +27,7 @@ const Home = () => {
           
           {/* Left Content */}
           <div className="space-y-6 text-center lg:text-left">
-            <h1 className="text-3xl md:text-5xl font-bold leading-snug text-blue-900 dark:text-white">
+            <h1 className="text-3xl md:text-5xl font-bold leading-snug text-blue-900">
               Empowering Businesses with {" "}
              
                 Cutting Edge Software & AI
