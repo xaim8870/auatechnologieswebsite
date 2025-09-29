@@ -1,7 +1,7 @@
 // src/App.tsx
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ThemeProvider  from './contexts/ThemeContext';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -18,7 +18,7 @@ function App() {
   
 
   return (
-    <ThemeProvider>
+  
       <Router>
         <div className="flex flex-col min-h-screen">
           <Navbar />
@@ -39,7 +39,7 @@ function App() {
           <Footer />
         </div>
       </Router>
-    </ThemeProvider>
+    
   );
 }
 
