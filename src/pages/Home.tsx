@@ -20,9 +20,9 @@ const Home = () => {
 
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-100 text-gray-900transition-colors duration-300">
       {/* Hero Slideshow */}
-      <div className="relative h-[calc(100vh-80px)] bg-white dark:bg-gray-950 flex items-center">
+      <div className="relative h-[calc(100vh-80px)] bg-white flex items-center">
         <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Content */}
