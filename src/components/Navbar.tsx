@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-white backdrop-blur-md py-4 transition-transform duration-300 ${
+      className={`sticky top-0 z-50   py-4 transition-transform duration-300 ${
         navbarVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
