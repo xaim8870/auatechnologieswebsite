@@ -31,7 +31,7 @@ function App() {
         waveSpeedY={0.008}
         waveAmpX={28}
         waveAmpY={18}
-        className="z-10"
+        className="z-10 pointer-events-none"
       />
 
       {/* Foreground content above the waves */}
