@@ -5,6 +5,7 @@ interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  className?: string;
 }
 
 const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
