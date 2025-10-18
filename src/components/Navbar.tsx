@@ -66,7 +66,7 @@ const Navbar = () => {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-blue-900 dark:text-white"
+          className="md:hidden flex  items-center text-blue-900 dark:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <HiX className="h-7 w-7" /> : <HiMenu className="h-7 w-7" />}

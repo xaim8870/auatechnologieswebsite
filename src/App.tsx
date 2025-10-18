@@ -12,6 +12,7 @@ import Portfolio from './pages/Portfolio';
 import Blogs from './pages/Blog';
 import Services from './pages/Services';
 import Technologies from './pages/Technologies';
+import ChatWidget from './components/ChatWidget';
 // Add more imports as needed
 // Import other pages as you create them, e.g., import About from './pages/About';
 
@@ -21,7 +22,7 @@ function App() {
   return (
   <Router>
     {/* The parent div must be relative so Waves can stay fixed behind content */}
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       
       {/* 🌊 Animated background behind the app */}
       <Waves
@@ -31,7 +32,7 @@ function App() {
         waveSpeedY={0.008}
         waveAmpX={28}
         waveAmpY={18}
-        className="z-10 pointer-events-none"
+        className="-z-10 pointer-events-none"
       />
 
       {/* Foreground content above the waves */}
@@ -49,6 +50,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <ChatWidget />
       </div>
     </div>
   </Router>
