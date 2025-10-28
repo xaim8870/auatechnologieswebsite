@@ -1,137 +1,123 @@
 // src/components/Footer.tsx
 import { Link } from "react-router-dom";
-import { FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
-import logo from "../assets/images/nav-logo.png";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaGithub,
+  FaInstagram,
+} from "react-icons/fa";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-950 dark:to-gray-900 text-gray-700 dark:text-gray-300 py-12 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        
-        {/* Logo + About */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="AUA Logo" className="h-12 w-auto drop-shadow-lg" />
-            <span className="text-xl font-extrabold text-gray-900 dark:text-white tracking-wide">
-              AUA TECHNOLOGIES
-            </span>
-          </Link>
-          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-            Innovative solutions for your business needs. We design, build, and scale technology with excellence.
+    <footer className="bg-transparent text-gray-700 pt-16 pb-10 border-t border-blue-200">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* 🏢 Company Info */}
+        <div>
+          <h2 className="text-2xl font-extrabold text-blue-900 mb-4 tracking-tight">
+            AUA <span className="text-orange-600">Technologies</span>
+          </h2>
+          <p className="text-gray-600 text-sm leading-relaxed mb-5">
+            We craft intelligent, secure, and scalable software & AI solutions
+            that empower businesses and improve lives worldwide.
           </p>
-        </div>
 
-        {/* Quick Links */}
-        <div className="text-center md:text-left">
-          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Quick Links
-          </h4>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link
-                to="/about"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
+          <div className="flex space-x-3 mt-4">
+            {[
+              { icon: <FaLinkedinIn />, link: "https://linkedin.com" },
+              { icon: <FaGithub />, link: "https://github.com" },
+              { icon: <FaInstagram />, link: "https://instagram.com" },
+              { icon: <FaFacebookF />, link: "https://facebook.com" },
+            ].map((social, i) => (
+              <a
+                key={i}
+                href={social.link}
+                target="_blank"
+                rel="noreferrer"
+                className="p-2.5 rounded-full border border-gray-300 hover:border-orange-600 hover:bg-orange-600 transition-all duration-300"
               >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/services"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/portfolio"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
-              >
-                Portfolio
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Policies */}
-        <div className="text-center md:text-left">
-          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Resources
-          </h4>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link
-                to="/blogs"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
-              >
-                Blogs
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/privacy"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/terms"
-                className="hover:text-blue-600 dark:hover:text-purple-400 transition-colors duration-200"
-              >
-                Terms & Conditions
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Social Media */}
-        <div className="text-center md:text-left flex flex-col items-center md:items-start space-y-4">
-          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Connect With Us
-          </h4>
-          <div className="flex space-x-4">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors duration-300 shadow-md"
-            >
-              <FaXTwitter className="h-5 w-5" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 transition-colors duration-300 shadow-md"
-            >
-              <FaLinkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-pink-600 hover:text-white dark:hover:bg-pink-500 transition-colors duration-300 shadow-md"
-            >
-              <FaInstagram className="h-5 w-5" />
-            </a>
+                <div className="text-gray-700 hover:text-white text-sm">
+                  {social.icon}
+                </div>
+              </a>
+            ))}
           </div>
+        </div>
+
+        {/* 🔗 Quick Links */}
+        <div>
+          <h3 className="text-lg font-semibold text-blue-900 mb-4 border-l-4 border-orange-600 pl-3 uppercase tracking-wide">
+            Quick Links
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-700">
+            {[
+              { name: "Home", to: "/" },
+              { name: "Services", to: "/services" },
+              { name: "Portfolio", to: "/portfolio" },
+              { name: "Blogs", to: "/blogs" },
+              { name: "About Us", to: "/about" },
+              { name: "Contact", to: "/contact" },
+            ].map((link, i) => (
+              <li key={i}>
+                <Link
+                  to={link.to}
+                  className="hover:text-orange-600 transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 💼 Services */}
+        <div>
+          <h3 className="text-lg font-semibold text-blue-900 mb-4 border-l-4 border-orange-600 pl-3 uppercase tracking-wide">
+            Services
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-700">
+            <li>Custom Web & App Development</li>
+            <li>AI & Machine Learning Solutions</li>
+            <li>Cloud & DevOps</li>
+            <li>Full-Stack Product Development</li>
+            <li>Technical Consultation</li>
+          </ul>
+        </div>
+
+        {/* 📬 Contact */}
+        <div>
+          <h3 className="text-lg font-semibold text-blue-900 mb-4 border-l-4 border-orange-600 pl-3 uppercase tracking-wide">
+            Contact Us
+          </h3>
+          <ul className="space-y-3 text-sm text-gray-700">
+            <li className="flex items-center gap-3">
+              <Mail className="w-4 h-4 text-orange-600" />
+              <span>contact@auatech.com</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Phone className="w-4 h-4 text-orange-600" />
+              <span>+92 345 1234567</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <MapPin className="w-4 h-4 text-orange-600" />
+              <span>Islamabad, Pakistan</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-300 dark:border-gray-700 mt-10 pt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-        &copy; {new Date().getFullYear()} AUA Technologies. All rights reserved.
+      {/* Divider */}
+      <div className="border-t border-gray-200 mt-16 pt-8 text-center">
+        <p className="text-sm text-gray-600">
+          © {new Date().getFullYear()}{" "}
+          <span className="text-orange-600 font-semibold">
+            AUA Technologies
+          </span>{" "}
+          — All Rights Reserved.
+        </p>
+        <p className="text-xs text-gray-500 mt-2">
+          Designed & Developed with ❤️ by the AUA Engineering Team
+        </p>
       </div>
     </footer>
   );

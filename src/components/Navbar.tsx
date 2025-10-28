@@ -30,9 +30,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="AUA Logo" className="h-20 w-auto " />
-          <span className="text-2xl font-bold text-blue-900 tracking-wide font-['Poppins']">
-            AUA TECHNOLOGIES
+          <img src={logo} alt="AUA Logo" className="h-20 w-auto transition-transform duration-300 ease-in-out hover:scale-125 " />
+          <span className="text-3xl font-extrabold text-blue-900 tracking-wide font-['Poppins'] transition-transform duration-300 ease-in-out hover:scale-110">
+            AUA  <span className="text-orange-600 hove: none">TECHNOLOGIES </span>
           </span>
         </Link>
 

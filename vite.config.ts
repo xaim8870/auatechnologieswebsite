@@ -7,4 +7,5 @@ export default defineConfig({
     react(),
    
   ],
+  assetsInclude: ['**/*.md'],   // ✅ Add this line
 })

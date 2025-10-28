@@ -10,6 +10,7 @@ import About from './pages/About';
 import Contact from './pages/ContactUs';
 import Portfolio from './pages/Portfolio';
 import Blogs from './pages/Blog';
+import BlogPost from "./pages/BlogPost";
 import Services from './pages/Services';
 import Technologies from './pages/Technologies';
 import ChatWidget from './components/ChatWidget';
@@ -45,6 +46,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/blogs" element={<Blogs />} />
+             <Route path="/blogs/:slug" element={<BlogPost />} />
             <Route path="/services" element={<Services />} />
             <Route path="/technologies" element={<Technologies />} />
           </Routes>

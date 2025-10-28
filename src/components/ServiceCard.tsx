@@ -10,7 +10,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
   return (
-    <div className="group relative bg-white p-6 border-solid shadow-lg  hover:scale-105 rounded-lg overflow-hidden">
+    <div className="group relative bg-white p-6 border-solid shadow-lg  hover:scale-105  overflow-hidden">
       {/* Creative Overlay Gradient on Hover */}
       <div className="absolute inset-0  opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       {/* Icon with Pulse Animation */}

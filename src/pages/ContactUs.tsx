@@ -1,157 +1,211 @@
 // src/pages/Contact.tsx
-
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Twitter, Linkedin } from "lucide-react";
+import { useForm } from "react-hook-form";
+import {
+  User,
+  Mail,
+  Phone,
+  Briefcase,
+  Rocket,
+  PenTool,
+  Calendar,
+  MessageSquare,
+  Send,
+} from "lucide-react";
 
 const Contact = () => {
-  return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      
-      {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
-          alt="Contact Us"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 max-w-3xl px-6"
-        >
-          <h1 className="text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 drop-shadow-lg">
-            Get in Touch
-          </h1>
-          <p className="mt-6 text-xl md:text-2xl text-gray-200 italic drop-shadow-md">
-            Let’s build the future of healthcare technology — together.
-          </p>
-        </motion.div>
-      </section>
+  const { register, handleSubmit, reset } = useForm();
 
-      {/* Contact Section */}
-      <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12">
-        
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8"
+  const onSubmit = (data: any) => {
+    console.log(data);
+    alert("Form submitted successfully!");
+    reset();
+  };
+
+  return (
+    <section className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        {/* 🟦 Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 dark:text-white mb-4">
+            Let’s Talk Business 🤝
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Whether you’re an entrepreneur, freelancer, or business owner — tell us
+            about your goals and we’ll help you craft the perfect digital solution
+            with strategy, design, and technology that scale.
+          </p>
+        </div>
+
+        {/* 🧩 Contact Form */}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700 px-10 py-12 grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          <h2 className="text-3xl font-bold mb-6 text-blue-600 dark:text-blue-400">
-            Send Us a Message
-          </h2>
-          <form className="space-y-6">
-            <div>
-              <label className="block mb-2 font-medium">Name</label>
+          {/* Name */}
+          <div>
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Full Name
+            </label>
+            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <User className="w-5 h-5 text-orange-600" />
               <input
+                {...register("name")}
                 type="text"
-                placeholder="Your Name"
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Your full name"
+                className="w-full bg-transparent outline-none"
+                required
               />
             </div>
-            <div>
-              <label className="block mb-2 font-medium">Email</label>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Email Address
+            </label>
+            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <Mail className="w-5 h-5 text-orange-600" />
               <input
+                {...register("email")}
                 type="email"
-                placeholder="your@email.com"
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="you@example.com"
+                className="w-full bg-transparent outline-none"
+                required
               />
             </div>
-            <div>
-              <label className="block mb-2 font-medium">Subject</label>
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Phone Number
+            </label>
+            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <Phone className="w-5 h-5 text-orange-600" />
               <input
-                type="text"
-                placeholder="Subject"
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                {...register("phone")}
+                type="tel"
+                placeholder="+1 234 567 890"
+                className="w-full bg-transparent outline-none"
               />
             </div>
-            <div>
-              <label className="block mb-2 font-medium">Message</label>
-              <textarea
-                rows={5}
-                placeholder="Write your message..."
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              ></textarea>
+          </div>
+
+          {/* Service Type */}
+          <div>
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              What service do you need?
+            </label>
+            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <Briefcase className="w-5 h-5 text-orange-600" />
+              <select
+                {...register("service")}
+                className="w-full bg-transparent outline-none appearance-none focus:outline-none"
+                required
+              >
+                <option value="">Select a service</option>
+                <option>Website or App Development</option>
+                <option>AI / Machine Learning Project</option>
+                <option>UI / UX Design</option>
+                <option>Product Consultation</option>
+                <option>DevOps & Cloud Setup</option>
+                <option>Something Custom</option>
+              </select>
             </div>
+          </div>
+
+          {/* Budget */}
+          <div>
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Estimated Budget (USD)
+            </label>
+            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <Rocket className="w-5 h-5 text-orange-600" />
+              <select
+                {...register("budget")}
+                className="w-full bg-transparent outline-none appearance-none focus:outline-none"
+              >
+                <option value="">Select range</option>
+                <option>$500 - $2,000</option>
+                <option>$2,000 - $10,000</option>
+                <option>$10,000 - $25,000</option>
+                <option>$25,000+</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div>
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Preferred Timeline
+            </label>
+            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <Calendar className="w-5 h-5 text-orange-600" />
+              <select
+                {...register("timeline")}
+                className="w-full bg-transparent outline-none appearance-none focus:outline-none"
+              >
+                <option>As soon as possible</option>
+                <option>1 - 3 months</option>
+                <option>3 - 6 months</option>
+                <option>6+ months</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Project Description */}
+          <div className="md:col-span-2">
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Tell us about your project
+            </label>
+            <div className="flex items-start gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <PenTool className="w-5 h-5 text-orange-600 mt-2" />
+              <textarea
+                {...register("description")}
+                rows={5}
+                placeholder="Describe your goals, problems to solve, or ideas you’d like to explore..."
+                className="w-full bg-transparent outline-none resize-none"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Additional Notes */}
+          <div className="md:col-span-2">
+            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+              Additional Details or Questions
+            </label>
+            <div className="flex items-start gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+              <MessageSquare className="w-5 h-5 text-orange-600 mt-2" />
+              <textarea
+                {...register("notes")}
+                rows={3}
+                placeholder="Anything else we should know?"
+                className="w-full bg-transparent outline-none resize-none"
+              />
+            </div>
+          </div>
+
+          {/* Submit */}
+          <div className="md:col-span-2 text-center mt-4">
             <button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 text-white font-semibold hover:bg-orange-700 transition-all duration-300"
             >
-              Send Message
+              <Send className="w-5 h-5" /> Submit Inquiry
             </button>
-          </form>
-
-          {/* CTA under form */}
-          <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400 italic">
-            Looking for AI, Healthcare, or Full-Stack solutions? Let’s collaborate.
-          </p>
-        </motion.div>
-
-        {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col justify-center space-y-8"
-        >
-          <h2 className="text-3xl font-bold mb-4 text-purple-600 dark:text-purple-400">
-            Our Contact Details
-          </h2>
-          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            Reach out to us at our head office in Islamabad, Pakistan,  
-            or connect through email, phone, and social media.  
-            We’re always excited to collaborate and innovate.
-          </p>
-
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <MapPin className="text-indigo-500" />
-              <span>Islamabad, Pakistan</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Mail className="text-indigo-500" />
-              <span>info@auatechnologies.com</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Phone className="text-indigo-500" />
-              <span>+92 300 1234567</span>
-            </div>
           </div>
+        </form>
 
-          {/* Social Links */}
-          <div className="flex gap-6 mt-6">
-            <a
-              href="https://twitter.com/YourHandle"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-500 hover:text-indigo-700 transition-colors"
-            >
-              <Twitter />
-            </a>
-            <a
-              href="https://linkedin.com/company/YourCompany"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-500 hover:text-indigo-700 transition-colors"
-            >
-              <Linkedin />
-            </a>
-          </div>
-
-          {/* Response Note */}
-         <p className="mt-4 inline-block px-4 py-2 text-sm font-bold text-amber-800 dark:text-amber-200 bg-amber-100 dark:bg-amber-900 rounded-full italic animate-pulse shadow-md">
-            ⚡ We typically respond within 3–6 hours.
-        </p>
-
-
-        </motion.div>
-      </section>
-    </div>
+        {/* 🟧 Footer Note */}
+        <div className="text-center mt-16">
+          <p className="text-gray-600 dark:text-gray-400">
+            We’ll get back to you within <strong>24–48 hours</strong>.  
+            Let’s build something extraordinary together 🚀
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };
 
