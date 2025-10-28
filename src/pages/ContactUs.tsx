@@ -11,25 +11,48 @@ import {
   MessageSquare,
   Send,
 } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [responseMsg, setResponseMsg] = useState("");
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    alert("Form submitted successfully!");
-    reset();
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+    setResponseMsg("");
+
+    try {
+      const response = await fetch("/.netlify/functions/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setResponseMsg("✅ Message sent successfully! We'll get back to you soon.");
+        reset();
+      } else {
+        setResponseMsg("❌ Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      setResponseMsg("⚠️ Something went wrong. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 py-20 px-6">
+    <section className="min-h-screen bg-gray-50 text-gray-900 py-20 px-6">
       <div className="max-w-5xl mx-auto">
         {/* 🟦 Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 dark:text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4">
             Let’s Talk Business 🤝
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Whether you’re an entrepreneur, freelancer, or business owner — tell us
             about your goals and we’ll help you craft the perfect digital solution
             with strategy, design, and technology that scale.
@@ -39,14 +62,14 @@ const Contact = () => {
         {/* 🧩 Contact Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700 px-10 py-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="bg-white shadow-lg border border-gray-200 px-10 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 rounded-2xl"
         >
-          {/* Name */}
+          {/* Full Name */}
           <div>
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Full Name
             </label>
-            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-center gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <User className="w-5 h-5 text-orange-600" />
               <input
                 {...register("name")}
@@ -60,10 +83,10 @@ const Contact = () => {
 
           {/* Email */}
           <div>
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Email Address
             </label>
-            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-center gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <Mail className="w-5 h-5 text-orange-600" />
               <input
                 {...register("email")}
@@ -77,10 +100,10 @@ const Contact = () => {
 
           {/* Phone */}
           <div>
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Phone Number
             </label>
-            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-center gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <Phone className="w-5 h-5 text-orange-600" />
               <input
                 {...register("phone")}
@@ -93,10 +116,10 @@ const Contact = () => {
 
           {/* Service Type */}
           <div>
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               What service do you need?
             </label>
-            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-center gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <Briefcase className="w-5 h-5 text-orange-600" />
               <select
                 {...register("service")}
@@ -116,10 +139,10 @@ const Contact = () => {
 
           {/* Budget */}
           <div>
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Estimated Budget (USD)
             </label>
-            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-center gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <Rocket className="w-5 h-5 text-orange-600" />
               <select
                 {...register("budget")}
@@ -136,10 +159,10 @@ const Contact = () => {
 
           {/* Timeline */}
           <div>
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Preferred Timeline
             </label>
-            <div className="flex items-center gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-center gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <Calendar className="w-5 h-5 text-orange-600" />
               <select
                 {...register("timeline")}
@@ -153,12 +176,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Project Description */}
+          {/* Description */}
           <div className="md:col-span-2">
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Tell us about your project
             </label>
-            <div className="flex items-start gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-start gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <PenTool className="w-5 h-5 text-orange-600 mt-2" />
               <textarea
                 {...register("description")}
@@ -170,12 +193,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Additional Notes */}
+          {/* Notes */}
           <div className="md:col-span-2">
-            <label className="block font-semibold mb-2 text-blue-900 dark:text-gray-100">
+            <label className="block font-semibold mb-2 text-blue-900">
               Additional Details or Questions
             </label>
-            <div className="flex items-start gap-3 border border-gray-300 dark:border-gray-700 px-3 py-2">
+            <div className="flex items-start gap-3 border border-gray-300 px-3 py-2 rounded-md">
               <MessageSquare className="w-5 h-5 text-orange-600 mt-2" />
               <textarea
                 {...register("notes")}
@@ -186,20 +209,32 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Submit */}
+          {/* Submit Button */}
           <div className="md:col-span-2 text-center mt-4">
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 text-white font-semibold hover:bg-orange-700 transition-all duration-300"
+              disabled={loading}
+              className={`inline-flex items-center gap-2 px-8 py-3 font-semibold text-white transition-all duration-300 rounded-md ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-orange-600 hover:bg-orange-700"
+              }`}
             >
-              <Send className="w-5 h-5" /> Submit Inquiry
+              {loading ? "Sending..." : <>
+                <Send className="w-5 h-5" /> Submit Inquiry
+              </>}
             </button>
+
+            {/* Response Message */}
+            {responseMsg && (
+              <p className="mt-4 text-center text-sm text-gray-700">{responseMsg}</p>
+            )}
           </div>
         </form>
 
         {/* 🟧 Footer Note */}
         <div className="text-center mt-16">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600">
             We’ll get back to you within <strong>24–48 hours</strong>.  
             Let’s build something extraordinary together 🚀
           </p>
