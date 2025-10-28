@@ -13,7 +13,7 @@ import Blogs from './pages/Blog';
 import BlogPost from "./pages/BlogPost";
 import Services from './pages/Services';
 import Technologies from './pages/Technologies';
-import ChatWidget from './components/ChatWidget';
+
 // Add more imports as needed
 // Import other pages as you create them, e.g., import About from './pages/About';
 
@@ -52,7 +52,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <ChatWidget />
+        
       </div>
     </div>
   </Router>
