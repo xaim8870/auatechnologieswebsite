@@ -51,7 +51,7 @@ const Footer = () => {
           </h3>
           <ul className="space-y-2 text-sm text-gray-700">
             {[
-              { name: "Home", to: "/" },
+              
               { name: "Services", to: "/services" },
               { name: "Portfolio", to: "/portfolio" },
               { name: "Blogs", to: "/blogs" },
@@ -92,11 +92,11 @@ const Footer = () => {
           <ul className="space-y-3 text-sm text-gray-700">
             <li className="flex items-center gap-3">
               <Mail className="w-4 h-4 text-orange-600" />
-              <span>contact@auatech.com</span>
+              <span>info@auatechnologies.com</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="w-4 h-4 text-orange-600" />
-              <span>+92 345 1234567</span>
+              <span>+92 3001058870</span>
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="w-4 h-4 text-orange-600" />

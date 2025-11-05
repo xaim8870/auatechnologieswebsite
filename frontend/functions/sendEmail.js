@@ -1,57 +1,41 @@
-import nodemailer from "nodemailer";
+// netlify/functions/sendEmail.js
+import fetch from "node-fetch";
 
 export async function handler(event) {
   try {
     const data = JSON.parse(event.body);
 
-    // 📨 Configure Gmail SMTP
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "usamajabar.2@gmail.com",
-        pass: process.env.EMAIL_PASSWORD, // Use app password here
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json"
       },
+      body: JSON.stringify({
+        from: "AUA Technologies <contactus@auatechnologies.com>",
+        to: ["contactus@auatechnologies.com"],
+        subject: `📩 New Inquiry from ${data.name}`,
+        html: `
+          <h2>New Message Received</h2>
+          <p><b>Name:</b> ${data.name}</p>
+          <p><b>Email:</b> ${data.email}</p>
+          <p><b>Phone:</b> ${data.phone || "N/A"}</p>
+          <p><b>Service:</b> ${data.service}</p>
+          <p><b>Budget:</b> ${data.budget || "Not specified"}</p>
+          <p><b>Timeline:</b> ${data.timeline || "Not specified"}</p>
+          <p><b>Description:</b> ${data.description}</p>
+          <p><b>Notes:</b> ${data.notes || "None"}</p>
+        `
+      }),
     });
 
-    // 🧠 Construct email
-    const mailOptions = {
-      from: `"AUA Technologies Contact Form" <usamajabar.2@gmail.com>`,
-      to: "usamajabar.2@gmail.com",
-      subject: `📩 New Inquiry from ${data.name}`,
-      text: `
-New message received from AUA Technologies Contact Form
-
-────────────────────────────
-👤 Name: ${data.name}
-📧 Email: ${data.email}
-📞 Phone: ${data.phone || "N/A"}
-💼 Service: ${data.service}
-💰 Budget: ${data.budget || "Not specified"}
-⏱️ Timeline: ${data.timeline || "Not specified"}
-
-🧠 Project Description:
-${data.description}
-
-💬 Additional Notes:
-${data.notes || "None"}
-────────────────────────────
-
-End of message.
-      `,
-    };
-
-    // 📤 Send the email
-    await transporter.sendMail(mailOptions);
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ success: true, message: "Email sent successfully!" }),
-    };
-  } catch (error) {
-    console.error("❌ Email error:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, message: error.message }),
-    };
+    if (res.ok) {
+      return { statusCode: 200, body: JSON.stringify({ success: true }) };
+    } else {
+      const err = await res.text();
+      return { statusCode: 500, body: JSON.stringify({ success: false, message: err }) };
+    }
+  } catch (e) {
+    return { statusCode: 500, body: JSON.stringify({ success: false, message: e.message }) };
   }
 }
